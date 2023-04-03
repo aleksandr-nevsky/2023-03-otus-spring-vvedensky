@@ -14,11 +14,6 @@ public class QuestionAndAnswerServiceImpl implements QuestionAndAnswerService {
     }
 
     @Override
-    public QuestionAndAnswer getRandom() {
-        return dao.getRandomQuestion();
-    }
-
-    @Override
     public List<QuestionAndAnswer> getAll() {
         return dao.getAll();
     }

@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class QuestionAndAnswerDaoCsv implements QuestionAndAnswerDao {
     private final List<QuestionAndAnswer> questionsAndAnswers;
@@ -29,12 +28,6 @@ public class QuestionAndAnswerDaoCsv implements QuestionAndAnswerDao {
             String[] split = line.split(",");
             questionsAndAnswers.add(new QuestionAndAnswer(split[0], split[1]));
         });
-    }
-
-    @Override
-    public QuestionAndAnswer getRandomQuestion() {
-        int randomNum = ThreadLocalRandom.current().nextInt(questionsAndAnswers.size());
-        return questionsAndAnswers.get(randomNum);
     }
 
     @Override
