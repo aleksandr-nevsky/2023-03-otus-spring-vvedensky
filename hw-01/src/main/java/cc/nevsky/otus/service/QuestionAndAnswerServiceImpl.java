@@ -1,0 +1,18 @@
+package cc.nevsky.otus.service;
+
+import cc.nevsky.otus.dao.QuestionAndAnswerDao;
+import cc.nevsky.otus.domain.QuestionAndAnswer;
+
+public class QuestionAndAnswerServiceImpl implements QuestionAndAnswerService {
+
+    private final QuestionAndAnswerDao dao;
+
+    public QuestionAndAnswerServiceImpl(QuestionAndAnswerDao dao) {
+        this.dao = dao;
+    }
+
+    @Override
+    public QuestionAndAnswer getRandom() {
+        return dao.getRandomQuestion();
+    }
+}
