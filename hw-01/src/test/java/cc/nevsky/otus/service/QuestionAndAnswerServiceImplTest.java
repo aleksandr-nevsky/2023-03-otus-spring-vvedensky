@@ -29,8 +29,7 @@ class QuestionAndAnswerServiceImplTest {
 
     @Test
     void get42() {
-        assertEquals("42", service.getAll().get(0).getQuestionText());
-        assertEquals("42", service.getAll().get(0).getAnswer());
+        assertEquals("Question = 42; Answer = 42", service.getAllQuestionsAndAnswers());
     }
 
 }

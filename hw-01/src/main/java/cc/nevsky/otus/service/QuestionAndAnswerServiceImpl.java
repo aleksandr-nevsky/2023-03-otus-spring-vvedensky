@@ -1,9 +1,8 @@
 package cc.nevsky.otus.service;
 
 import cc.nevsky.otus.dao.QuestionAndAnswerDao;
-import cc.nevsky.otus.domain.QuestionAndAnswer;
 
-import java.util.List;
+import java.util.stream.Collectors;
 
 public class QuestionAndAnswerServiceImpl implements QuestionAndAnswerService {
 
@@ -14,7 +13,12 @@ public class QuestionAndAnswerServiceImpl implements QuestionAndAnswerService {
     }
 
     @Override
-    public List<QuestionAndAnswer> getAll() {
-        return dao.getAll();
+    public String getAllQuestionsAndAnswers() {
+        var rows = dao.getAll();
+
+        return rows.stream()
+                .map(element ->
+                        String.format("Question = %s; Answer = %s", element.getQuestionText(), element.getAnswer()))
+                .collect(Collectors.joining("\n"));
     }
 }
