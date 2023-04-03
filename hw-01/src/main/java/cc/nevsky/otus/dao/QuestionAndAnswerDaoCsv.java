@@ -37,4 +37,9 @@ public class QuestionAndAnswerDaoCsv implements QuestionAndAnswerDao {
         return questionsAndAnswers.get(randomNum);
     }
 
+    @Override
+    public List<QuestionAndAnswer> getAll() {
+        return List.copyOf(questionsAndAnswers);
+    }
+
 }

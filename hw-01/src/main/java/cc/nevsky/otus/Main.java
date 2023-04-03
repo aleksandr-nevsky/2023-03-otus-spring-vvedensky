@@ -13,6 +13,9 @@ public class Main {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/spring-context.xml");
         QuestionAndAnswerService service = context.getBean(QuestionAndAnswerService.class);
 
+        service.getAll()
+                .forEach(element -> System.out.printf("Question = %s; Answer = %s\n", element.getQuestionText(), element.getAnswer()));
+
         for (int i = 0; i < TRY_COUNTER; i++) {
             Scanner scanner = new Scanner(System.in);
             QuestionAndAnswer question = service.getRandom();

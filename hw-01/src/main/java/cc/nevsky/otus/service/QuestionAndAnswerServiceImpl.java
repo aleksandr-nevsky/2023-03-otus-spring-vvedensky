@@ -3,6 +3,8 @@ package cc.nevsky.otus.service;
 import cc.nevsky.otus.dao.QuestionAndAnswerDao;
 import cc.nevsky.otus.domain.QuestionAndAnswer;
 
+import java.util.List;
+
 public class QuestionAndAnswerServiceImpl implements QuestionAndAnswerService {
 
     private final QuestionAndAnswerDao dao;
@@ -14,5 +16,10 @@ public class QuestionAndAnswerServiceImpl implements QuestionAndAnswerService {
     @Override
     public QuestionAndAnswer getRandom() {
         return dao.getRandomQuestion();
+    }
+
+    @Override
+    public List<QuestionAndAnswer> getAll() {
+        return dao.getAll();
     }
 }
