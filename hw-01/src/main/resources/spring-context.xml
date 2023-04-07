@@ -6,11 +6,17 @@
 
     <bean id="questionAndAnswerDao" class="cc.nevsky.otus.dao.QuestionAndAnswerDaoCsv">
         <constructor-arg index="0" value="questions.csv"/>
-
     </bean>
 
-    <bean id="questionAndAnswerService" class="cc.nevsky.otus.service.QuestionAndAnswerServiceImpl">
+    <bean id="ioService" class="cc.nevsky.otus.services.IOServiceStreams"/>
+
+    <bean id="questionAndAnswerService" class="cc.nevsky.otus.services.QuestionAndAnswerServiceImpl">
         <constructor-arg index="0" ref="questionAndAnswerDao"/>
+        <constructor-arg index="1" ref="ioService"/>
+    </bean>
+
+    <bean id="hwRunner" class="cc.nevsky.otus.runner.HwRunner">
+        <constructor-arg index="0" ref="questionAndAnswerService"/>
     </bean>
 
 </beans>

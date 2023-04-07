@@ -1,6 +1,8 @@
-package cc.nevsky.otus.service;
+package cc.nevsky.otus.services;
 
 public interface QuestionAndAnswerService {
 
     String getAllQuestionsAndAnswers();
+
+    void printAllQuestionsAndAnswers();
 }

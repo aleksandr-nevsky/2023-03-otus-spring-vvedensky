@@ -1,11 +1,11 @@
 package cc.nevsky.otus.domain;
 
-public class QuestionAndAnswer {
+public class Question {
     private final String questionText;
 
     private final String answer;
 
-    public QuestionAndAnswer(String questionText, String answer) {
+    public Question(String questionText, String answer) {
         this.questionText = questionText;
         this.answer = answer;
     }
