@@ -4,19 +4,23 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="questionAndAnswerDao" class="cc.nevsky.otus.dao.QuestionAndAnswerDaoCsv">
+    <bean id="questionAndAnswerDao" class="cc.nevsky.otus.dao.QuestionsDaoCsv">
         <constructor-arg index="0" value="questions.csv"/>
     </bean>
 
     <bean id="ioService" class="cc.nevsky.otus.services.IOServiceStreams"/>
 
-    <bean id="questionAndAnswerService" class="cc.nevsky.otus.services.QuestionAndAnswerServiceImpl">
+    <bean id="questionsService" class="cc.nevsky.otus.services.QuestionsServiceImpl">
         <constructor-arg index="0" ref="questionAndAnswerDao"/>
-        <constructor-arg index="1" ref="ioService"/>
+    </bean>
+
+    <bean id="questionsPrinter" class="cc.nevsky.otus.services.QuestionsPrinterImpl">
+        <constructor-arg index="0" ref="ioService"/>
+        <constructor-arg index="1" ref="questionsService"/>
     </bean>
 
     <bean id="hwRunner" class="cc.nevsky.otus.runner.HwRunner">
-        <constructor-arg index="0" ref="questionAndAnswerService"/>
+        <constructor-arg index="0" ref="questionsPrinter"/>
     </bean>
 
 </beans>

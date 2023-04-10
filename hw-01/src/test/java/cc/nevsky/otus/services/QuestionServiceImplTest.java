@@ -1,6 +1,5 @@
 package cc.nevsky.otus.services;
 
-import cc.nevsky.otus.dao.QuestionAndAnswerDaoCsv;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -15,14 +14,14 @@ import static org.mockito.Mockito.verify;
 class QuestionServiceImplTest {
 
     @Mock
-    private QuestionAndAnswerDaoCsv questionAndAnswerDaoCsv;
+    private QuestionsService questionsService;
     @Mock
     private IOService ioService;
 
     @Test
     void printMethodShouldCallIoService() {
-        QuestionAndAnswerServiceImpl answerService = new QuestionAndAnswerServiceImpl(questionAndAnswerDaoCsv, ioService);
-        answerService.printAllQuestionsAndAnswers();
+        QuestionsPrinter questionsPrinter = new QuestionsPrinterImpl(ioService, questionsService);
+        questionsPrinter.printAllQuestionsAndAnswers();
 
         verify(ioService, times(1)).outputString(any());
     }

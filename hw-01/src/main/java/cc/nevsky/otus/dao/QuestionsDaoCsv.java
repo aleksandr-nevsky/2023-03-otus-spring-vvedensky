@@ -4,16 +4,15 @@ import cc.nevsky.otus.domain.Question;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionAndAnswerDaoCsv implements QuestionAndAnswerDao {
+public class QuestionsDaoCsv implements QuestionsDao {
 
     private final String csvPath;
 
-    public QuestionAndAnswerDaoCsv(String csvPath) {
+    public QuestionsDaoCsv(String csvPath) {
         this.csvPath = csvPath;
     }
 
@@ -32,7 +31,7 @@ public class QuestionAndAnswerDaoCsv implements QuestionAndAnswerDao {
             });
 
             return questionsAndAnswers;
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

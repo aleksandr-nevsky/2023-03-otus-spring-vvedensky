@@ -4,7 +4,7 @@ import cc.nevsky.otus.domain.Question;
 
 import java.util.List;
 
-public interface QuestionAndAnswerDao {
+public interface QuestionsDao {
     List<Question> getAll();
 
 }

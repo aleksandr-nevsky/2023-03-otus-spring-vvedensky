@@ -1,17 +1,17 @@
 package cc.nevsky.otus.runner;
 
-import cc.nevsky.otus.services.QuestionAndAnswerService;
+import cc.nevsky.otus.services.QuestionsPrinter;
 
 public class HwRunner {
 
-    private final QuestionAndAnswerService questionAndAnswerService;
+    private final QuestionsPrinter questionsPrinter;
 
-    public HwRunner(QuestionAndAnswerService questionAndAnswerService) {
-        this.questionAndAnswerService = questionAndAnswerService;
+    public HwRunner(QuestionsPrinter questionsPrinter) {
+        this.questionsPrinter = questionsPrinter;
     }
 
     public void run() {
-        questionAndAnswerService.printAllQuestionsAndAnswers();
+        questionsPrinter.printAllQuestionsAndAnswers();
     }
 
 }
