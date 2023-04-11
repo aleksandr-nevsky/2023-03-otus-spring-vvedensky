@@ -1,5 +1,8 @@
 package cc.nevsky.otus.services;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class QuestionsPrinterImpl implements QuestionsPrinter {
 
     private final IOService ioService;
