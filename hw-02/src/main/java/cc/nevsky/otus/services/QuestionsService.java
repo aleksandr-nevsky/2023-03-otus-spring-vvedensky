@@ -6,7 +6,5 @@ import java.util.List;
 
 public interface QuestionsService {
 
-    String getAllQuestionsAndAnswers();
-
-    List<Question> getQuestionAndAnswersList();
+    List<Question> getQuestionList();
 }

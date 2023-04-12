@@ -14,11 +14,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User registerNewUser() {
-        ioService.outputString("Enter first name:");
-        String firstName = ioService.readStringWithPrompt("");
-
-        ioService.outputString("Enter last name:");
-        String lastName = ioService.readStringWithPrompt("");
+        String firstName = ioService.readStringWithPrompt("Enter first name:");
+        String lastName = ioService.readStringWithPrompt("Enter last name:");
 
         return new User(firstName, lastName);
     }

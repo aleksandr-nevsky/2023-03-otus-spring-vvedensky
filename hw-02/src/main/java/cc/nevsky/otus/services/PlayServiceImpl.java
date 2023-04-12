@@ -1,7 +1,6 @@
 package cc.nevsky.otus.services;
 
 import cc.nevsky.otus.domain.Question;
-import cc.nevsky.otus.domain.User;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -21,24 +20,16 @@ public class PlayServiceImpl implements PlayService {
 
     @Override
     public int playAndGetResult() {
-        List<Question> questionList = questionsService.getQuestionAndAnswersList();
+        List<Question> questionList = questionsService.getQuestionList();
 
         for (Question question : questionList) {
-            ioService.outputString("Enter answer for question: ");
-            ioService.outputString(question.getQuestionText());
-            String userAnswer = ioService.readStringWithPrompt("\n");
+            String message = "Enter answer for question: " + question.getQuestionText();
+            String userAnswer = ioService.readStringWithPrompt(message);
             if (question.getAnswer().equals(userAnswer)) {
                 correctAnswers++;
             }
         }
 
         return correctAnswers;
-    }
-
-    @Override
-    public void printResult(User player, int correctAnswers) {
-        String finalString = String.format("%s %s, your result = %s",
-                player.getFirstName(), player.getLastName(), correctAnswers);
-        ioService.outputString(finalString);
     }
 }

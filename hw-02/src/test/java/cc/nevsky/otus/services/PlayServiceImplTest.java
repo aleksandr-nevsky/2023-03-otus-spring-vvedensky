@@ -26,7 +26,7 @@ class PlayServiceImplTest {
         List<Question> questions = new ArrayList<>();
         questions.add(new Question("1+1", "2"));
 
-        when(questionsService.getQuestionAndAnswersList())
+        when(questionsService.getQuestionList())
                 .thenReturn(questions);
 
         when(ioService.readStringWithPrompt("\n"))

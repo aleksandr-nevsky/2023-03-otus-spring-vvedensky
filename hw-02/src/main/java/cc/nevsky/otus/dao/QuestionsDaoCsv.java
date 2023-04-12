@@ -1,6 +1,6 @@
 package cc.nevsky.otus.dao;
 
-import cc.nevsky.otus.config.AppProperties;
+import cc.nevsky.otus.config.QuestionsProperties;
 import cc.nevsky.otus.domain.Question;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -13,17 +13,17 @@ import java.util.List;
 @Component
 public class QuestionsDaoCsv implements QuestionsDao {
 
-    private final AppProperties appProperties;
+    private final QuestionsProperties questionsProperties;
 
-    public QuestionsDaoCsv(AppProperties appProperties) {
-        this.appProperties = appProperties;
+    public QuestionsDaoCsv(QuestionsProperties questionsProperties) {
+        this.questionsProperties = questionsProperties;
     }
 
     @Override
     public List<Question> getAll() {
         try {
             List<Question> questionsAndAnswers = new ArrayList<>();
-            Resource resource = new ClassPathResource(appProperties.getQuestionsCsv());
+            Resource resource = new ClassPathResource(questionsProperties.getQuestionsCsv());
 
             String resourceString = resource.getContentAsString(StandardCharsets.UTF_8);
             List<String> lines = List.of(resourceString.split("\n"));
@@ -35,9 +35,7 @@ public class QuestionsDaoCsv implements QuestionsDao {
 
             return questionsAndAnswers;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-            return new ArrayList<>();
+            throw new RuntimeException(e);
         }
     }
 }

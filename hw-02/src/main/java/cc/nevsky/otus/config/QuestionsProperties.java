@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @PropertySource("classpath:application.properties")
-public class AppProperties {
+public class QuestionsProperties {
 
     @Value("${question.file}")
     private String questionsCsv;
