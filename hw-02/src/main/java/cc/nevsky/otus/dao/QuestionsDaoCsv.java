@@ -2,6 +2,7 @@ package cc.nevsky.otus.dao;
 
 import cc.nevsky.otus.config.QuestionsProperties;
 import cc.nevsky.otus.domain.Question;
+import cc.nevsky.otus.exceptions.SadBusinessException;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
@@ -35,7 +36,7 @@ public class QuestionsDaoCsv implements QuestionsDao {
 
             return questionsAndAnswers;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new SadBusinessException(e);
         }
     }
 }

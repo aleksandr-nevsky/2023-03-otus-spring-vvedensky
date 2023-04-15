@@ -11,8 +11,6 @@ public class PlayServiceImpl implements PlayService {
 
     private final IOService ioService;
 
-    private int correctAnswers = 0;
-
     public PlayServiceImpl(QuestionsService questionsService, IOService ioService) {
         this.questionsService = questionsService;
         this.ioService = ioService;
@@ -21,6 +19,7 @@ public class PlayServiceImpl implements PlayService {
     @Override
     public int playAndGetResult() {
         List<Question> questionList = questionsService.getQuestionList();
+        int correctAnswers = 0;
 
         for (Question question : questionList) {
             String message = "Enter answer for question: " + question.getQuestionText();

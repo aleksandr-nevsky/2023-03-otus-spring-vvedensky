@@ -1,19 +1,18 @@
 package cc.nevsky.otus.services;
 
-import org.springframework.stereotype.Service;
-
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-@Service
+
 public class IOServiceStreams implements IOService {
     private final PrintStream output;
 
     private final Scanner input;
 
-    public IOServiceStreams() {
-        output = System.out;
-        input = new Scanner(System.in);
+    public IOServiceStreams(InputStream input, PrintStream output) {
+        this.output = output;
+        this.input = new Scanner(input);
     }
 
     @Override
