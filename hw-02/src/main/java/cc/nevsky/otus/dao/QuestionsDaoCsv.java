@@ -1,26 +1,30 @@
 package cc.nevsky.otus.dao;
 
+import cc.nevsky.otus.config.QuestionsProperties;
 import cc.nevsky.otus.domain.Question;
+import cc.nevsky.otus.exceptions.SadBusinessException;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class QuestionsDaoCsv implements QuestionsDao {
 
-    private final String csvPath;
+    private final QuestionsProperties questionsProperties;
 
-    public QuestionsDaoCsv(String csvPath) {
-        this.csvPath = csvPath;
+    public QuestionsDaoCsv(QuestionsProperties questionsProperties) {
+        this.questionsProperties = questionsProperties;
     }
 
     @Override
     public List<Question> getAll() {
         try {
             List<Question> questionsAndAnswers = new ArrayList<>();
-            Resource resource = new ClassPathResource(csvPath);
+            Resource resource = new ClassPathResource(questionsProperties.getQuestionsCsv());
 
             String resourceString = resource.getContentAsString(StandardCharsets.UTF_8);
             List<String> lines = List.of(resourceString.split("\n"));
@@ -32,7 +36,7 @@ public class QuestionsDaoCsv implements QuestionsDao {
 
             return questionsAndAnswers;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new SadBusinessException(e);
         }
     }
 }
