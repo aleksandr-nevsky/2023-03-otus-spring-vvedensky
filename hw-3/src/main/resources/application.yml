@@ -1,0 +1,7 @@
+spring:
+  messages:
+    basename: "i18n/localized_questions"
+    encoding: "UTF-8"
+
+application:
+  locale: ru_RU
