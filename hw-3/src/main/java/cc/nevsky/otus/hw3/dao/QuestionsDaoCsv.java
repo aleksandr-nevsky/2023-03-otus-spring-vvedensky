@@ -1,9 +1,10 @@
 package cc.nevsky.otus.hw3.dao;
 
 
-import cc.nevsky.otus.hw3.config.CsvProperties;
+import cc.nevsky.otus.hw3.config.AppProperties;
 import cc.nevsky.otus.hw3.domain.Question;
 import cc.nevsky.otus.hw3.exceptions.BusinessException;
+import lombok.AllArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
@@ -12,20 +13,17 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+@AllArgsConstructor
 @Component
 public class QuestionsDaoCsv implements QuestionsDao {
 
-    private final CsvProperties csvProperties;
-
-    public QuestionsDaoCsv(CsvProperties csvProperties) {
-        this.csvProperties = csvProperties;
-    }
+    private final AppProperties appProperties;
 
     @Override
     public List<Question> getAll() {
         try {
             List<Question> questionsAndAnswers = new ArrayList<>();
-            Resource resource = new ClassPathResource(csvProperties.getQuestionsCsv());
+            Resource resource = new ClassPathResource(appProperties.getQuestionsCsv());
 
             String resourceString = resource.getContentAsString(StandardCharsets.UTF_8);
             List<String> lines = List.of(resourceString.split("\n"));

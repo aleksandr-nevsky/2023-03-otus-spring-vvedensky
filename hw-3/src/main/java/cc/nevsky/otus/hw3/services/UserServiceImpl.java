@@ -1,33 +1,24 @@
 package cc.nevsky.otus.hw3.services;
 
-import cc.nevsky.otus.hw3.config.AppProperties;
 import cc.nevsky.otus.hw3.domain.User;
-import org.springframework.context.MessageSource;
-import org.springframework.stereotype.Component;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
-@Component
+@AllArgsConstructor
+@Service
 public class UserServiceImpl implements UserService {
 
     private final IOService ioService;
 
-    private final MessageSource messageSource;
+    private final LocalisationService localisationService;
 
-    private final AppProperties appProperties;
-
-    public UserServiceImpl(IOService ioService, MessageSource messageSource, AppProperties appProperties) {
-        this.ioService = ioService;
-        this.messageSource = messageSource;
-        this.appProperties = appProperties;
-    }
 
     @Override
     public User registerNewUser() {
-        String askFirstName = messageSource.getMessage("question.request.first_name",
-                new String[]{},
-                appProperties.getLocale());
-        String askLastName = messageSource.getMessage("question.request.last_name",
-                new String[]{},
-                appProperties.getLocale());
+        String askFirstName = localisationService.getMessage("question.request.first_name",
+                new String[]{});
+        String askLastName = localisationService.getMessage("question.request.last_name",
+                new String[]{});
 
         String firstName = ioService.readStringWithPrompt(askFirstName);
         String lastName = ioService.readStringWithPrompt(askLastName);

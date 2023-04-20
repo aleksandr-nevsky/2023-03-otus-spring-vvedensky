@@ -5,3 +5,5 @@ spring:
 
 application:
   locale: ru_RU
+  questions_file_name: questions/questions
+  questions_extension: csv
